@@ -1,5 +1,7 @@
 # LaserStation-TwinCAT
 TwinCAT Beckhoff Laser Station Project 
+
+Created by Ranita Majumder and Hirak Chatterjee as part of SUAS Premier Program.
 Create the project in TcXaeShell
 1. Start **TcXaeShell** (run as administrator is not required for engineering).
 2. **File ÔåÆ New ÔåÆ Project ÔåÆ TwinCAT Projects ÔåÆ TwinCAT XAE Project (XML format)**. Name: `LaserStation`.
