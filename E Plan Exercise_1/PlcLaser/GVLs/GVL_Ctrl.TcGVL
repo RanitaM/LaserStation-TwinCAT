@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Ctrl" Id="{ece0d45a-9efc-4417-8046-fc6dc81ec7a0}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+    xStart  : BOOL;              // start automatic cycle (rising edge, stays active until Stop)
+    xStop   : BOOL;              // stop after current cycle
+    xReset  : BOOL;              // acknowledge fault (rising edge)
+    xReject : BOOL;              // TRUE = next part is a reject (diverter + bypass)
+    nJobNo  : USINT := 1;        // laser job number 1..15
+
+    xSim            : BOOL := TRUE;    // TRUE = simulate all I/O (offline); FALSE = real hardware
+    xSimEStop       : BOOL;            // simulate E-stop pressed
+    xSimPressureOK  : BOOL := TRUE;    // simulate air pressure ok
+    xSimPartIn      : BOOL;            // put a part at infeed light barrier
+    xSimPartOut     : BOOL;            // set automatically when ejector pushed the part
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

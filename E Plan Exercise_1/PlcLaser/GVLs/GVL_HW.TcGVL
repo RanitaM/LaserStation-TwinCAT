@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_HW" Id="{c4d66cdc-c4cb-428c-9bf8-d3731d12afa1}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+    //---------------- EL1809 +MP-6K10 (cabinet inputs)
+    xMaintPressureOK   AT %I* : BOOL;   // E0.0  Wartungseinheit: Druckschalter (TRUE = pressure ok)
+    xEStopPressed      AT %I* : BOOL;   // E0.1  Not-Halt betaetigt           (TRUE = pressed)
+    //---------------- EL2809 +MP-6K20 (cabinet outputs)
+    xMaintVent         AT %Q* : BOOL;   // A0.0  Wartungseinheit: Entlueften  (TRUE = vent)
+    xLaserEnable       AT %Q* : BOOL;   // A0.1  LaserEnable
+    //---------------- EL1809 +LS-7K10 (CW controller inputs)
+    xCW_Lready         AT %I* : BOOL;   // E50.0 CW: Lready
+    xCW_JobLoaded      AT %I* : BOOL;   // E50.1 CW: Jobloaded
+    xCW_MarkBusy       AT %I* : BOOL;   // E50.2 CW: MarkInProgress
+    //---------------- EL2809 +LS-7K20 (CW controller outputs)
+    xCW_Trig           AT %Q* : BOOL;   // A50.0 CW: Ltrig
+    xCW_Job0           AT %Q* : BOOL;   // A50.1 CW: Job bit 0
+    xCW_Job1           AT %Q* : BOOL;   // A50.2 CW: Job bit 1
+    xCW_Job2           AT %Q* : BOOL;   // A50.3 CW: Job bit 2
+    xCW_Job3           AT %Q* : BOOL;   // A50.4 CW: Job bit 3
+    xCW_STO            AT %Q* : BOOL;   // A50.5 CW: STO (ASSUMPTION: TRUE = STO released)
+    //---------------- EP1018-0001 +MS-9K1
+    xSnsEjector_AS     AT %I* : BOOL;   // E1050.0
+    xSnsEjector_GS     AT %I* : BOOL;   // E1050.1
+    xSnsClamp_AS       AT %I* : BOOL;   // E1050.2
+    xSnsClamp_GS       AT %I* : BOOL;   // E1050.3
+    xSnsDiverter_AS    AT %I* : BOOL;   // E1050.4
+    xSnsDiverter_GS    AT %I* : BOOL;   // E1050.5
+    //---------------- EP1018-0001 +MS-9K2
+    xSnsInfeed_AS      AT %I* : BOOL;   // E1051.0
+    xSnsInfeed_GS      AT %I* : BOOL;   // E1051.1
+    xSnsOutfeed_AS     AT %I* : BOOL;   // E1051.2
+    xSnsOutfeed_GS     AT %I* : BOOL;   // E1051.3
+    //---------------- EP1018-0001 +MS-9K3
+    xLS_Infeed         AT %I* : BOOL;   // E1052.0 Lichtschranke Einlauf (TRUE = part present)
+    xServoIn_Latched   AT %I* : BOOL;   // E1052.1 Servo Einlauf eingerastet
+    xServoIn_AS        AT %I* : BOOL;   // E1052.2
+    xServoIn_GS        AT %I* : BOOL;   // E1052.3
+    xLS_Outfeed        AT %I* : BOOL;   // E1052.4 Lichtschranke Auslauf (TRUE = part present)
+    xServoOut_Latched  AT %I* : BOOL;   // E1052.5 Servo Auslauf eingerastet
+    xServoOut_AS       AT %I* : BOOL;   // E1052.6
+    xServoOut_GS       AT %I* : BOOL;   // E1052.7
+    //---------------- EP2028-0001 +MS-10K1
+    xValveEjector_AS   AT %Q* : BOOL;   // A1050.0
+    xValveEjector_GS   AT %Q* : BOOL;   // A1050.1
+    xValveClamp_AS     AT %Q* : BOOL;   // A1050.2
+    xValveClamp_GS     AT %Q* : BOOL;   // A1050.3
+    xValveDiverter_AS  AT %Q* : BOOL;   // A1050.4
+    xValveDiverter_GS  AT %Q* : BOOL;   // A1050.5
+    //---------------- EP2028-0001 +MS-10K2
+    xValveInfeed_AS    AT %Q* : BOOL;   // A1051.0
+    xValveInfeed_GS    AT %Q* : BOOL;   // A1051.1
+    xValveOutfeed_AS   AT %Q* : BOOL;   // A1051.2
+    xValveOutfeed_GS   AT %Q* : BOOL;   // A1051.3
+    xValveBlow_AS      AT %Q* : BOOL;   // A1051.4 Ausblasen
+    xValveBlow_GS      AT %Q* : BOOL;   // A1051.5
+    xValveBypass_AS    AT %Q* : BOOL;   // A1051.6 Auswurf Bypass
+    xValveBypass_GS    AT %Q* : BOOL;   // A1051.7
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

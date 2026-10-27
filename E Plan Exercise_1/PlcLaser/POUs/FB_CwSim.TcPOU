@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_CwSim" Id="{870b2a9e-94bc-45d6-af3a-361fb6c0d496}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CwSim
+VAR_INPUT
+    xEnable      : BOOL;
+    xTrig        : BOOL;
+    nJob         : USINT;
+END_VAR
+VAR_OUTPUT
+    xReady       : BOOL;
+    xJobLoaded   : BOOL;
+    xBusy        : BOOL;
+END_VAR
+VAR
+    fbLoad       : TON;
+    fbMark       : TON;
+    rTrig        : R_TRIG;
+    xRun         : BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[xReady := xEnable;
+fbLoad(IN := xEnable AND (nJob > 0), PT := T#300MS);
+xJobLoaded := fbLoad.Q;
+
+rTrig(CLK := xTrig AND xReady AND xJobLoaded);
+IF rTrig.Q THEN
+    xRun := TRUE;
+END_IF
+fbMark(IN := xRun, PT := T#2S);          // marking takes 2 s
+IF fbMark.Q THEN
+    xRun := FALSE;
+END_IF
+xBusy := xRun;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
