@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_CylinderSim" Id="{f11ca7ce-359a-41a0-bb75-f2c72ffc2adc}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CylinderSim
+VAR_INPUT
+    xValveWork : BOOL;
+    xValveHome : BOOL;
+    tMoveTime  : TIME := T#500MS;
+END_VAR
+VAR_OUTPUT
+    xSensWork  : BOOL;
+    xSensHome  : BOOL := TRUE;       // power-up position = home
+END_VAR
+VAR
+    fbToWork   : TON;
+    fbToHome   : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbToWork(IN := xValveWork AND NOT xValveHome, PT := tMoveTime);
+fbToHome(IN := xValveHome AND NOT xValveWork, PT := tMoveTime);
+
+IF xValveWork AND NOT xValveHome THEN xSensHome := FALSE; END_IF
+IF xValveHome AND NOT xValveWork THEN xSensWork := FALSE; END_IF
+IF fbToWork.Q THEN xSensWork := TRUE; END_IF
+IF fbToHome.Q THEN xSensHome := TRUE; END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

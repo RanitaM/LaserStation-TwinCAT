@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="E_Step" Id="{45851fd5-fbd4-4095-a961-558efb62a36f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_Step :
+(
+    eInit         := 0,     // all cylinders home, everything off
+    eIdle         := 10,    // wait for Start / ready
+    eWaitPart     := 20,    // wait for light barrier infeed
+    eInfeedFwd    := 30,    // infeed cylinder pushes part into station
+    eClampFwd     := 40,    // clamp part
+    eInfeedBack   := 50,    // infeed cylinder back
+    eLoadJob      := 60,    // select job, enable laser, wait for Jobloaded + Lready
+    eLaserRun     := 70,    // trigger laser
+    eLaserWait    := 80,    // wait until marking finished
+    eBlowOff      := 90,    // blow off debris (timed)
+    eClampBack    := 100,   // release clamp
+    eDiverter     := 110,   // set diverter (good part / reject)
+    eEject        := 120,   // ejector forward (+ bypass valve for rejects)
+    eEjectBack    := 130,   // ejector back
+    eOutfeedWait  := 140,   // wait for light barrier outfeed
+    eOutfeed      := 150,   // outfeed cylinder forward
+    eOutfeedBack  := 160,   // outfeed cylinder back
+    eCycleEnd     := 170,   // diverter home, count part
+    eFault        := 900
+) UINT;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
