@@ -1,0 +1,13 @@
+.vs/
+*.suo
+*.user
+_Boot/
+_CompileInfo/
+_Libraries/
+*.compileinfo
+*.tpy
+*.bootinfo
+LineIDs.dbg
+LineIDs.dbg.bak
+*.bak
+*.tmp
